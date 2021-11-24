@@ -50,25 +50,32 @@ btnLearnMore.style.borderColor = "var(--green)";
 //#endregion jumbotron
 
 //#region cards
-const cards = document.querySelector("#cards");
-const animalsCard = document.querySelector("#animals-card");
-const techCard = document.querySelector("#tech-card");
-const peopleCard = document.querySelector("#people-card");
-const natureCard = document.querySelector("#nature-card");
-const buttonGoSomewhere = document.querySelector("#button-go-somewhere");
+const rowsRegions = document.querySelectorAll(".row");
 
-cards.removeChild(animalsCard);
-cards.removeChild(techCard);
-cards.removeChild(peopleCard);
-cards.removeChild(natureCard);
+const cardsRegion = rowsRegions[2];
 
-cards.appendChild(natureCard);
-cards.appendChild(animalsCard);
-cards.appendChild(peopleCard);
-cards.appendChild(techCard);
+const cards = rowsRegions[2].childNodes;
+const card = [...cards].filter((card) => {
+  return (
+    card.nodeType === Node.ELEMENT_NODE && card.classList.contains("col-lg-3")
+  );
+});
+cardsRegion.removeChild(card[0]);
+cardsRegion.removeChild(card[1]);
+cardsRegion.removeChild(card[2]);
+cardsRegion.removeChild(card[3]);
 
-buttonGoSomewhere.style.backgroundColor = "var(--green)";
-buttonGoSomewhere.style.borderColor = "var(--green)";
+cardsRegion.appendChild(card[3]);
+cardsRegion.appendChild(card[0]);
+cardsRegion.appendChild(card[2]);
+cardsRegion.appendChild(card[1]);
+
+const links = document.querySelectorAll("a.btn ,a.btn-primary");
+
+const linkAnimalsGoSomewhere = links[2];
+
+linkAnimalsGoSomewhere.style.backgroundColor = "var(--green)";
+linkAnimalsGoSomewhere.style.borderColor = "var(--green)";
 
 //#endregion cards
 
